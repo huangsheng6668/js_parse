@@ -1,3 +1,10 @@
+thatWhatINeed = '';
+Hi = '';
+const express = require('express');
+var bodyParser = require('body-parser');
+const app = express();
+app.use(bodyParser());
+
 function randomString(len) {
   len = len || 32;
 
@@ -25,7 +32,24 @@ window.unescape = unescape;
 window.eval = eval;
 window.Date = Date;
 document = new Object();
-
+document = {
+  createElement: function() {
+    return canvas
+  }
+};
+canvas = {
+  getContext: function getContext() {
+    return CanvasRenderingContext2D
+  },
+  toDataURL: function toDataURL() {
+    return "data:image/png;base64,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"
+  },
+};
+CanvasRenderingContext2D = {
+  arc: function arc() {},
+  stroke: function stroke() {},
+  fillText: function fillText() {},
+};
 document.createElement = function (name) {
   return "<" + name + ">" + "</" + name + ">";
 };
@@ -33,6 +57,8 @@ document.createElement = function (name) {
 document.createElement.toString = function () {
   return "function createElement() { [native code] }";
 };
+
+
 
 window.document = document;
 var navigator = new Object();
@@ -88,12 +114,12 @@ navigator.plugins = plugins;
 window.navigator = navigator;
 location = new Object();
 location.port = "";
-location.protocol = "http:";
-location.host = "www.vipkid.com.cn";
-location.hostname = "www.vipkid.com.cn";
-location.href = "https://www.vipkid.com.cn/entry/terminal/wwwlogin?device=pc&firstScreen=login&appId=10001&activityCode=";
-location.origin = "https://www.vipkid.com.cn";
-location.pathname = "/entry/terminal/wwwlogin";
+location.protocol = "https:";
+location.host = "dlocal.com";
+location.hostname = "dlocal.com";
+location.href = "https://dlocal.com/press-releases/";
+location.origin = "https://dlocal.com";
+location.pathname = "/press-releases/";
 window.location = location;
 history = new Object();
 history.length = 5;
@@ -124,6 +150,11 @@ window.parent = window;
 window.top = window;
 window.self = window;
 window.window = window;
+window["pageYOffset"] = 0;
+window["pageXOffset"] = 0;
+window.innerWidth = 1920;
+window.outerWidth = 1920;
+window.outerHeight = 1050;
 
 T0SS.t1 = function () {
   var p = 2;
@@ -589,49 +620,49 @@ T0SS.E6S = function () {
 
 T0SS.s4 = function () {
   var E = function (W, e) {
-    var Y = e & 65535;
-    var R = e - Y;
-    return (R * W | 0) + (Y * W | 0) | 0;
-  },
+        var Y = e & 65535;
+        var R = e - Y;
+        return (R * W | 0) + (Y * W | 0) | 0;
+      },
       C = function (V, b, m) {
-    var S = m;
-    var O = b & ~3;
+        var S = m;
+        var O = b & ~3;
 
-    for (var G = 0; G < O; G += 4) {
-      var B = V.charCodeAt(G) & 255 | (V.charCodeAt(G + 1) & 255) << 8 | (V.charCodeAt(G + 2) & 255) << 16 | (V.charCodeAt(G + 3) & 255) << 24;
-      B = E(B, 3432918353);
-      B = (B & 131071) << 15 | B >>> 17;
-      B = E(B, 461845907);
-      S ^= B;
-      S = (S & 524287) << 13 | S >>> 19;
-      S = S * 5 + 3864292196 | 0;
-    }
+        for (var G = 0; G < O; G += 4) {
+          var B = V.charCodeAt(G) & 255 | (V.charCodeAt(G + 1) & 255) << 8 | (V.charCodeAt(G + 2) & 255) << 16 | (V.charCodeAt(G + 3) & 255) << 24;
+          B = E(B, 3432918353);
+          B = (B & 131071) << 15 | B >>> 17;
+          B = E(B, 461845907);
+          S ^= B;
+          S = (S & 524287) << 13 | S >>> 19;
+          S = S * 5 + 3864292196 | 0;
+        }
 
-    B = 0;
+        B = 0;
 
-    switch (b % 4) {
-      case 3:
-        B = (V.charCodeAt(O + 2) & 255) << 16;
+        switch (b % 4) {
+          case 3:
+            B = (V.charCodeAt(O + 2) & 255) << 16;
 
-      case 2:
-        B |= (V.charCodeAt(O + 1) & 255) << 8;
+          case 2:
+            B |= (V.charCodeAt(O + 1) & 255) << 8;
 
-      case 1:
-        B |= V.charCodeAt(O) & 255;
-        B = E(B, 3432918353);
-        B = (B & 131071) << 15 | B >>> 17;
-        B = E(B, 461845907);
-        S ^= B;
-    }
+          case 1:
+            B |= V.charCodeAt(O) & 255;
+            B = E(B, 3432918353);
+            B = (B & 131071) << 15 | B >>> 17;
+            B = E(B, 461845907);
+            S ^= B;
+        }
 
-    S ^= b;
-    S ^= S >>> 16;
-    S = E(S, 2246822507);
-    S ^= S >>> 13;
-    S = E(S, 3266489909);
-    S ^= S >>> 16;
-    return S;
-  };
+        S ^= b;
+        S ^= S >>> 16;
+        S = E(S, 2246822507);
+        S ^= S >>> 13;
+        S = E(S, 3266489909);
+        S ^= S >>> 16;
+        return S;
+      };
 
   return {
     T: C
@@ -1087,7 +1118,7 @@ function r() {
       var T7;
       return void 0 !== (T7 = this["options"]["j"] && screen["height"] > screen["width"] ? [screen["height"], screen["width"]] : [screen["width"], screen["height"]]) && x0["push"]({
         "key": "resolution",
-        "value": T7
+        "value": [1920,1080]
       }), x0;
     },
     "G": function (E7) {
@@ -1109,7 +1140,7 @@ function r() {
 
       return screen["availWidth"] && screen["availHeight"] && (C7 = this["options"]["j"] ? screen["availHeight"] > screen["availWidth"] ? [screen["availHeight"], screen["availWidth"]] : [screen["availWidth"], screen["availHeight"]] : [screen["availHeight"], screen["availWidth"]]), void 0 !== C7 && Y7["push"]({
         "key": "available_resolution",
-        "value": C7
+        "value": [1920,1050]
       }), Y7;
     },
     "Ma": function (W7) {
@@ -1193,7 +1224,7 @@ function r() {
       if (T0SS.J4(W1.toString(), W1.toString().length, 6314) !== 363857474) {
         return this["options"]["qb"] || X7["push"]({
           "key": "navigator_platform",
-          "value": this["ca"]()
+          "value": "Win32"
         }), X7;
       }
     },
@@ -1306,74 +1337,74 @@ function r() {
     "ya": function (q7, n7) {
       var o7 = this;
       return setTimeout(function () {
-        var Z7 = ["monospace", "sans-serif", "serif"],
-            l7 = "Andale Mono;Arial;Arial Black;Arial Hebrew;Arial MT;Arial Narrow;Arial Rounded MT Bold;Arial Unicode MS;Bitstream Vera Sans Mono;Book Antiqua;Bookman Old Style;Calibri;Cambria;Cambria Math;Century;Century Gothic;Century Schoolbook;Comic Sans;Comic Sans MS;Consolas;Courier;Courier New;Garamond;Geneva;Georgia;Helvetica;Helvetica Neue;Impact;Lucida Bright;Lucida Calligraphy;Lucida Console;Lucida Fax;LUCIDA GRANDE;Lucida Handwriting;Lucida Sans;Lucida Sans Typewriter;Lucida Sans Unicode;Microsoft Sans Serif;Monaco;Monotype Corsiva;MS Gothic;MS Outlook;MS PGothic;MS Reference Sans Serif;MS Sans Serif;MS Serif;MYRIAD;MYRIAD PRO;Palatino;Palatino Linotype;Segoe Print;Segoe Script;Segoe UI;Segoe UI Light;Segoe UI Semibold;Segoe UI Symbol;Tahoma;Times;Times New Roman;Times New Roman PS;Trebuchet MS;Verdana;Wingdings;Wingdings 2;Wingdings 3"["split"](";"),
-            v7 = "Abadi MT Condensed Light;Academy Engraved LET;ADOBE CASLON PRO;Adobe Garamond;ADOBE GARAMOND PRO;Agency FB;Aharoni;Albertus Extra Bold;Albertus Medium;Algerian;Amazone BT;American Typewriter;American Typewriter Condensed;AmerType Md BT;Andalus;Angsana New;AngsanaUPC;Antique Olive;Aparajita;Apple Chancery;Apple Color Emoji;Apple SD Gothic Neo;Arabic Typesetting;ARCHER;ARNO PRO;Arrus BT;Aurora Cn BT;AvantGarde Bk BT;AvantGarde Md BT;AVENIR;Ayuthaya;Bandy;Bangla Sangam MN;Bank Gothic;BankGothic Md BT;Baskerville;Baskerville Old Face;Batang;BatangChe;Bauer Bodoni;Bauhaus 93;Bazooka;Bell MT;Bembo;Benguiat Bk BT;Berlin Sans FB;Berlin Sans FB Demi;Bernard MT Condensed;BernhardFashion BT;BernhardMod BT;Big Caslon;BinnerD;Blackadder ITC;BlairMdITC TT;Bodoni 72;Bodoni 72 Oldstyle;Bodoni 72 Smallcaps;Bodoni MT;Bodoni MT Black;Bodoni MT Condensed;Bodoni MT Poster Compressed;Bookshelf Symbol 7;Boulder;Bradley Hand;Bradley Hand ITC;Bremen Bd BT;Britannic Bold;Broadway;Browallia New;BrowalliaUPC;Brush Script MT;Californian FB;Calisto MT;Calligrapher;Candara;CaslonOpnface BT;Castellar;Centaur;Cezanne;CG Omega;CG Times;Chalkboard;Chalkboard SE;Chalkduster;Charlesworth;Charter Bd BT;Charter BT;Chaucer;ChelthmITC Bk BT;Chiller;Clarendon;Clarendon Condensed;CloisterBlack BT;Cochin;Colonna MT;Constantia;Cooper Black;Copperplate;Copperplate Gothic;Copperplate Gothic Bold;Copperplate Gothic Light;CopperplGoth Bd BT;Corbel;Cordia New;CordiaUPC;Cornerstone;Coronet;Cuckoo;Curlz MT;DaunPenh;Dauphin;David;DB LCD Temp;DELICIOUS;Denmark;DFKai-SB;Didot;DilleniaUPC;DIN;DokChampa;Dotum;DotumChe;Ebrima;Edwardian Script ITC;Elephant;English 111 Vivace BT;Engravers MT;EngraversGothic BT;Eras Bold ITC;Eras Demi ITC;Eras Light ITC;Eras Medium ITC;EucrosiaUPC;Euphemia;Euphemia UCAS;EUROSTILE;Exotc350 Bd BT;FangSong;Felix Titling;Fixedsys;FONTIN;Footlight MT Light;Forte;FrankRuehl;Fransiscan;Freefrm721 Blk BT;FreesiaUPC;Freestyle Script;French Script MT;FrnkGothITC Bk BT;Fruitger;FRUTIGER;Futura;Futura Bk BT;Futura Lt BT;Futura Md BT;Futura ZBlk BT;FuturaBlack BT;Gabriola;Galliard BT;Gautami;Geeza Pro;Geometr231 BT;Geometr231 Hv BT;Geometr231 Lt BT;GeoSlab 703 Lt BT;GeoSlab 703 XBd BT;Gigi;Gill Sans;Gill Sans MT;Gill Sans MT Condensed;Gill Sans MT Ext Condensed Bold;Gill Sans Ultra Bold;Gill Sans Ultra Bold Condensed;Gisha;Gloucester MT Extra Condensed;GOTHAM;GOTHAM BOLD;Goudy Old Style;Goudy Stout;GoudyHandtooled BT;GoudyOLSt BT;Gujarati Sangam MN;Gulim;GulimChe;Gungsuh;GungsuhChe;Gurmukhi MN;Haettenschweiler;Harlow Solid Italic;Harrington;Heather;Heiti SC;Heiti TC;HELV;Herald;High Tower Text;Hiragino Kaku Gothic ProN;Hiragino Mincho ProN;Hoefler Text;Humanst 521 Cn BT;Humanst521 BT;Humanst521 Lt BT;Imprint MT Shadow;Incised901 Bd BT;Incised901 BT;Incised901 Lt BT;INCONSOLATA;Informal Roman;Informal011 BT;INTERSTATE;IrisUPC;Iskoola Pota;JasmineUPC;Jazz LET;Jenson;Jester;Jokerman;Juice ITC;Kabel Bk BT;Kabel Ult BT;Kailasa;KaiTi;Kalinga;Kannada Sangam MN;Kartika;Kaufmann Bd BT;Kaufmann BT;Khmer UI;KodchiangUPC;Kokila;Korinna BT;Kristen ITC;Krungthep;Kunstler Script;Lao UI;Latha;Leelawadee;Letter Gothic;Levenim MT;LilyUPC;Lithograph;Lithograph Light;Long Island;Lydian BT;Magneto;Maiandra GD;Malayalam Sangam MN;Malgun Gothic;Mangal;Marigold;Marion;Marker Felt;Market;Marlett;Matisse ITC;Matura MT Script Capitals;Meiryo;Meiryo UI;Microsoft Himalaya;Microsoft JhengHei;Microsoft New Tai Lue;Microsoft PhagsPa;Microsoft Tai Le;Microsoft Uighur;Microsoft YaHei;Microsoft Yi Baiti;MingLiU;MingLiU_HKSCS;MingLiU_HKSCS-ExtB;MingLiU-ExtB;Minion;Minion Pro;Miriam;Miriam Fixed;Mistral;Modern;Modern No. 20;Mona Lisa Solid ITC TT;Mongolian Baiti;MONO;MoolBoran;Mrs Eaves;MS LineDraw;MS Mincho;MS PMincho;MS Reference Specialty;MS UI Gothic;MT Extra;MUSEO;MV Boli;Nadeem;Narkisim;NEVIS;News Gothic;News GothicMT;NewsGoth BT;Niagara Engraved;Niagara Solid;Noteworthy;NSimSun;Nyala;OCR A Extended;Old Century;Old English Text MT;Onyx;Onyx BT;OPTIMA;Oriya Sangam MN;OSAKA;OzHandicraft BT;Palace Script MT;Papyrus;Parchment;Party LET;Pegasus;Perpetua;Perpetua Titling MT;PetitaBold;Pickwick;Plantagenet Cherokee;Playbill;PMingLiU;PMingLiU-ExtB;Poor Richard;Poster;PosterBodoni BT;PRINCETOWN LET;Pristina;PTBarnum BT;Pythagoras;Raavi;Rage Italic;Ravie;Ribbon131 Bd BT;Rockwell;Rockwell Condensed;Rockwell Extra Bold;Rod;Roman;Sakkal Majalla;Santa Fe LET;Savoye LET;Sceptre;Script;Script MT Bold;SCRIPTINA;Serifa;Serifa BT;Serifa Th BT;ShelleyVolante BT;Sherwood;Shonar Bangla;Showcard Gothic;Shruti;Signboard;SILKSCREEN;SimHei;Simplified Arabic;Simplified Arabic Fixed;SimSun;SimSun-ExtB;Sinhala Sangam MN;Sketch Rockwell;Skia;Small Fonts;Snap ITC;Snell Roundhand;Socket;Souvenir Lt BT;Staccato222 BT;Steamer;Stencil;Storybook;Styllo;Subway;Swis721 BlkEx BT;Swiss911 XCm BT;Sylfaen;Synchro LET;System;Tamil Sangam MN;Technical;Teletype;Telugu Sangam MN;Tempus Sans ITC;Terminal;Thonburi;Traditional Arabic;Trajan;TRAJAN PRO;Tristan;Tubular;Tunga;Tw Cen MT;Tw Cen MT Condensed;Tw Cen MT Condensed Extra Bold;TypoUpright BT;Unicorn;Univers;Univers CE 55 Medium;Univers Condensed;Utsaah;Vagabond;Vani;Vijaya;Viner Hand ITC;VisualUI;Vivaldi;Vladimir Script;Vrinda;Westminster;WHITNEY;Wide Latin;ZapfEllipt BT;ZapfHumnst BT;ZapfHumnst Dm BT;Zapfino;Zurich BlkEx BT;Zurich Ex BT;ZWAdobeF"["split"](";");
+        var Z7 = ["monospace", "sans-serif", "serif"];
+        var l7 = "Andale Mono;Arial;Arial Black;Arial Hebrew;Arial MT;Arial Narrow;Arial Rounded MT Bold;Arial Unicode MS;Bitstream Vera Sans Mono;Book Antiqua;Bookman Old Style;Calibri;Cambria;Cambria Math;Century;Century Gothic;Century Schoolbook;Comic Sans;Comic Sans MS;Consolas;Courier;Courier New;Garamond;Geneva;Georgia;Helvetica;Helvetica Neue;Impact;Lucida Bright;Lucida Calligraphy;Lucida Console;Lucida Fax;LUCIDA GRANDE;Lucida Handwriting;Lucida Sans;Lucida Sans Typewriter;Lucida Sans Unicode;Microsoft Sans Serif;Monaco;Monotype Corsiva;MS Gothic;MS Outlook;MS PGothic;MS Reference Sans Serif;MS Sans Serif;MS Serif;MYRIAD;MYRIAD PRO;Palatino;Palatino Linotype;Segoe Print;Segoe Script;Segoe UI;Segoe UI Light;Segoe UI Semibold;Segoe UI Symbol;Tahoma;Times;Times New Roman;Times New Roman PS;Trebuchet MS;Verdana;Wingdings;Wingdings 2;Wingdings 3"["split"](";");
+        var v7 = "Abadi MT Condensed Light;Academy Engraved LET;ADOBE CASLON PRO;Adobe Garamond;ADOBE GARAMOND PRO;Agency FB;Aharoni;Albertus Extra Bold;Albertus Medium;Algerian;Amazone BT;American Typewriter;American Typewriter Condensed;AmerType Md BT;Andalus;Angsana New;AngsanaUPC;Antique Olive;Aparajita;Apple Chancery;Apple Color Emoji;Apple SD Gothic Neo;Arabic Typesetting;ARCHER;ARNO PRO;Arrus BT;Aurora Cn BT;AvantGarde Bk BT;AvantGarde Md BT;AVENIR;Ayuthaya;Bandy;Bangla Sangam MN;Bank Gothic;BankGothic Md BT;Baskerville;Baskerville Old Face;Batang;BatangChe;Bauer Bodoni;Bauhaus 93;Bazooka;Bell MT;Bembo;Benguiat Bk BT;Berlin Sans FB;Berlin Sans FB Demi;Bernard MT Condensed;BernhardFashion BT;BernhardMod BT;Big Caslon;BinnerD;Blackadder ITC;BlairMdITC TT;Bodoni 72;Bodoni 72 Oldstyle;Bodoni 72 Smallcaps;Bodoni MT;Bodoni MT Black;Bodoni MT Condensed;Bodoni MT Poster Compressed;Bookshelf Symbol 7;Boulder;Bradley Hand;Bradley Hand ITC;Bremen Bd BT;Britannic Bold;Broadway;Browallia New;BrowalliaUPC;Brush Script MT;Californian FB;Calisto MT;Calligrapher;Candara;CaslonOpnface BT;Castellar;Centaur;Cezanne;CG Omega;CG Times;Chalkboard;Chalkboard SE;Chalkduster;Charlesworth;Charter Bd BT;Charter BT;Chaucer;ChelthmITC Bk BT;Chiller;Clarendon;Clarendon Condensed;CloisterBlack BT;Cochin;Colonna MT;Constantia;Cooper Black;Copperplate;Copperplate Gothic;Copperplate Gothic Bold;Copperplate Gothic Light;CopperplGoth Bd BT;Corbel;Cordia New;CordiaUPC;Cornerstone;Coronet;Cuckoo;Curlz MT;DaunPenh;Dauphin;David;DB LCD Temp;DELICIOUS;Denmark;DFKai-SB;Didot;DilleniaUPC;DIN;DokChampa;Dotum;DotumChe;Ebrima;Edwardian Script ITC;Elephant;English 111 Vivace BT;Engravers MT;EngraversGothic BT;Eras Bold ITC;Eras Demi ITC;Eras Light ITC;Eras Medium ITC;EucrosiaUPC;Euphemia;Euphemia UCAS;EUROSTILE;Exotc350 Bd BT;FangSong;Felix Titling;Fixedsys;FONTIN;Footlight MT Light;Forte;FrankRuehl;Fransiscan;Freefrm721 Blk BT;FreesiaUPC;Freestyle Script;French Script MT;FrnkGothITC Bk BT;Fruitger;FRUTIGER;Futura;Futura Bk BT;Futura Lt BT;Futura Md BT;Futura ZBlk BT;FuturaBlack BT;Gabriola;Galliard BT;Gautami;Geeza Pro;Geometr231 BT;Geometr231 Hv BT;Geometr231 Lt BT;GeoSlab 703 Lt BT;GeoSlab 703 XBd BT;Gigi;Gill Sans;Gill Sans MT;Gill Sans MT Condensed;Gill Sans MT Ext Condensed Bold;Gill Sans Ultra Bold;Gill Sans Ultra Bold Condensed;Gisha;Gloucester MT Extra Condensed;GOTHAM;GOTHAM BOLD;Goudy Old Style;Goudy Stout;GoudyHandtooled BT;GoudyOLSt BT;Gujarati Sangam MN;Gulim;GulimChe;Gungsuh;GungsuhChe;Gurmukhi MN;Haettenschweiler;Harlow Solid Italic;Harrington;Heather;Heiti SC;Heiti TC;HELV;Herald;High Tower Text;Hiragino Kaku Gothic ProN;Hiragino Mincho ProN;Hoefler Text;Humanst 521 Cn BT;Humanst521 BT;Humanst521 Lt BT;Imprint MT Shadow;Incised901 Bd BT;Incised901 BT;Incised901 Lt BT;INCONSOLATA;Informal Roman;Informal011 BT;INTERSTATE;IrisUPC;Iskoola Pota;JasmineUPC;Jazz LET;Jenson;Jester;Jokerman;Juice ITC;Kabel Bk BT;Kabel Ult BT;Kailasa;KaiTi;Kalinga;Kannada Sangam MN;Kartika;Kaufmann Bd BT;Kaufmann BT;Khmer UI;KodchiangUPC;Kokila;Korinna BT;Kristen ITC;Krungthep;Kunstler Script;Lao UI;Latha;Leelawadee;Letter Gothic;Levenim MT;LilyUPC;Lithograph;Lithograph Light;Long Island;Lydian BT;Magneto;Maiandra GD;Malayalam Sangam MN;Malgun Gothic;Mangal;Marigold;Marion;Marker Felt;Market;Marlett;Matisse ITC;Matura MT Script Capitals;Meiryo;Meiryo UI;Microsoft Himalaya;Microsoft JhengHei;Microsoft New Tai Lue;Microsoft PhagsPa;Microsoft Tai Le;Microsoft Uighur;Microsoft YaHei;Microsoft Yi Baiti;MingLiU;MingLiU_HKSCS;MingLiU_HKSCS-ExtB;MingLiU-ExtB;Minion;Minion Pro;Miriam;Miriam Fixed;Mistral;Modern;Modern No. 20;Mona Lisa Solid ITC TT;Mongolian Baiti;MONO;MoolBoran;Mrs Eaves;MS LineDraw;MS Mincho;MS PMincho;MS Reference Specialty;MS UI Gothic;MT Extra;MUSEO;MV Boli;Nadeem;Narkisim;NEVIS;News Gothic;News GothicMT;NewsGoth BT;Niagara Engraved;Niagara Solid;Noteworthy;NSimSun;Nyala;OCR A Extended;Old Century;Old English Text MT;Onyx;Onyx BT;OPTIMA;Oriya Sangam MN;OSAKA;OzHandicraft BT;Palace Script MT;Papyrus;Parchment;Party LET;Pegasus;Perpetua;Perpetua Titling MT;PetitaBold;Pickwick;Plantagenet Cherokee;Playbill;PMingLiU;PMingLiU-ExtB;Poor Richard;Poster;PosterBodoni BT;PRINCETOWN LET;Pristina;PTBarnum BT;Pythagoras;Raavi;Rage Italic;Ravie;Ribbon131 Bd BT;Rockwell;Rockwell Condensed;Rockwell Extra Bold;Rod;Roman;Sakkal Majalla;Santa Fe LET;Savoye LET;Sceptre;Script;Script MT Bold;SCRIPTINA;Serifa;Serifa BT;Serifa Th BT;ShelleyVolante BT;Sherwood;Shonar Bangla;Showcard Gothic;Shruti;Signboard;SILKSCREEN;SimHei;Simplified Arabic;Simplified Arabic Fixed;SimSun;SimSun-ExtB;Sinhala Sangam MN;Sketch Rockwell;Skia;Small Fonts;Snap ITC;Snell Roundhand;Socket;Souvenir Lt BT;Staccato222 BT;Steamer;Stencil;Storybook;Styllo;Subway;Swis721 BlkEx BT;Swiss911 XCm BT;Sylfaen;Synchro LET;System;Tamil Sangam MN;Technical;Teletype;Telugu Sangam MN;Tempus Sans ITC;Terminal;Thonburi;Traditional Arabic;Trajan;TRAJAN PRO;Tristan;Tubular;Tunga;Tw Cen MT;Tw Cen MT Condensed;Tw Cen MT Condensed Extra Bold;TypoUpright BT;Unicorn;Univers;Univers CE 55 Medium;Univers Condensed;Utsaah;Vagabond;Vani;Vijaya;Viner Hand ITC;VisualUI;Vivaldi;Vladimir Script;Vrinda;Westminster;WHITNEY;Wide Latin;ZapfEllipt BT;ZapfHumnst BT;ZapfHumnst Dm BT;Zapfino;Zurich BlkEx BT;Zurich Ex BT;ZWAdobeF"["split"](";");
+
         o7["options"]["xb"] && (l7 = l7["concat"](v7));
         l7 = l7["concat"](o7["options"]["Pa"]);
-        v7 = document["getElementsByTagName"]("body")[0];
+        // v7 = document["getElementsByTagName"]("body")[0];
+        //
+        // var g7 = document["createElement"]("div"),
+        //     h7 = document["createElement"]("div"),
+        //     s7 = {},
+        //     f7 = {},
+        //     U7 = function () {
+        //       for (var N7 = [], d7 = 0, A7 = Z7["length"]; d7 < A7; d7++) {
+        //         var r7 = t7();
+        //         r7["style"]["fontFamily"] = Z7[d7];
+        //         g7["appendChild"](r7);
+        //         N7["push"](r7);
+        //       }
+        //
+        //       return N7;
+        //     }();
+        //
+        // v7["appendChild"](g7);
 
-        var g7 = document["createElement"]("div"),
-            h7 = document["createElement"]("div"),
-            s7 = {},
-            f7 = {},
-            U7 = function () {
-          for (var N7 = [], d7 = 0, A7 = Z7["length"]; d7 < A7; d7++) {
-            var r7 = t7();
-            r7["style"]["fontFamily"] = Z7[d7];
-            g7["appendChild"](r7);
-            N7["push"](r7);
-          }
+        // for (var F7 = 0, M7 = Z7["length"]; F7 < M7; F7++) s7[Z7[F7]] = U7[F7]["offsetWidth"], f7[Z7[F7]] = U7[F7]["offsetHeight"];
 
-          return N7;
-        }();
+        // U7 = function () {
+        //   for (var u7 = {}, w7 = 0, H7 = l7["length"]; w7 < H7; w7++) {
+        //     for (var P7 = [], I7 = 0, T5 = Z7["length"]; I7 < T5; I7++) {
+        //       var i7 = l7[w7],
+        //           E5 = Z7[I7],
+        //           x7 = t7();
+        //       T0SS.Y6S(T0SS.L6S()[11][57]);
+        //       var B0S = T0SS.C6S(3366, 3564);
+        //       T0SS.W6S(T0SS.L6S()[30][24][4][30]);
+        //       var X0S = T0SS.C6S(38, 2);
+        //       x7["style"]["fontFamily"] = T0SS.y1(B0S) + i7 + T0SS.J1(X0S) + E5;
+        //       i7 = x7;
+        //       h7["appendChild"](i7);
+        //       P7["push"](i7);
+        //     }
+        //
+        //     u7[l7[w7]] = P7;
+        //   }
+        //
+        //   return u7;
+        // }();
+        //
+        // v7["appendChild"](h7);
+        // F7 = [];
+        // M7 = 0;
+        //
+        // for (var J7 = l7["length"]; M7 < J7; M7++) (function (W5) {
+        //   for (var Y5 = !1, C5 = 0; C5 < Z7["length"] && !(Y5 = W5[C5]["offsetWidth"] !== s7[Z7[C5]] || W5[C5]["offsetHeight"] !== f7[Z7[C5]]); C5++);
+        //
+        //   return Y5;
+        // })(U7[l7[M7]]) && F7["push"](l7[M7]);
+        //
+        // function t7() {
+        //   var y7 = document["createElement"]("span");
+        //   return y7["style"]["position"] = "absolute", y7["style"]["left"] = "-9999px", y7["style"]["fontSize"] = "72px", y7["style"]["lineHeight"] = "normal", y7["innerHTML"] = "mmmmmmmmmmlli", y7;
+        // }
 
-        v7["appendChild"](g7);
 
-        for (var F7 = 0, M7 = Z7["length"]; F7 < M7; F7++) s7[Z7[F7]] = U7[F7]["offsetWidth"], f7[Z7[F7]] = U7[F7]["offsetHeight"];
-
-        U7 = function () {
-          for (var u7 = {}, w7 = 0, H7 = l7["length"]; w7 < H7; w7++) {
-            for (var P7 = [], I7 = 0, T5 = Z7["length"]; I7 < T5; I7++) {
-              var i7 = l7[w7],
-                  E5 = Z7[I7],
-                  x7 = t7();
-              T0SS.Y6S(T0SS.L6S()[11][57]);
-              var B0S = T0SS.C6S(3366, 3564);
-              T0SS.W6S(T0SS.L6S()[30][24][4][30]);
-              var X0S = T0SS.C6S(38, 2);
-              x7["style"]["fontFamily"] = T0SS.y1(B0S) + i7 + T0SS.J1(X0S) + E5;
-              i7 = x7;
-              h7["appendChild"](i7);
-              P7["push"](i7);
-            }
-
-            u7[l7[w7]] = P7;
-          }
-
-          return u7;
-        }();
-
-        v7["appendChild"](h7);
-        F7 = [];
-        M7 = 0;
-
-        for (var J7 = l7["length"]; M7 < J7; M7++) (function (W5) {
-          for (var Y5 = !1, C5 = 0; C5 < Z7["length"] && !(Y5 = W5[C5]["offsetWidth"] !== s7[Z7[C5]] || W5[C5]["offsetHeight"] !== f7[Z7[C5]]); C5++);
-
-          return Y5;
-        })(U7[l7[M7]]) && F7["push"](l7[M7]);
-
-        function t7() {
-          var y7 = document["createElement"]("span");
-          return y7["style"]["position"] = "absolute", y7["style"]["left"] = "-9999px", y7["style"]["fontSize"] = "72px", y7["style"]["lineHeight"] = "normal", y7["innerHTML"] = "mmmmmmmmmmlli", y7;
-        }
-
-        v7["removeChild"](h7);
-        v7["removeChild"](g7);
         q7["push"]({
           "key": "js_fonts",
-          "value": F7
+          "value": ["Arial","Arial Black","Arial Narrow","Book Antiqua","Bookman Old Style","Calibri","Cambria","Cambria Math","Century","Century Gothic","Century Schoolbook","Comic Sans MS","Consolas","Courier","Courier New","Garamond","Georgia","Helvetica","Impact","Lucida Bright","Lucida Calligraphy","Lucida Console","Lucida Fax","Lucida Handwriting","Lucida Sans","Lucida Sans Typewriter","Lucida Sans Unicode","Microsoft Sans Serif","Monotype Corsiva","MS Gothic","MS PGothic","MS Reference Sans Serif","MS Sans Serif","MS Serif","Palatino Linotype","Segoe Print","Segoe Script","Segoe UI","Segoe UI Light","Segoe UI Semibold","Segoe UI Symbol","Tahoma","Times","Times New Roman","Trebuchet MS","Verdana","Wingdings","Wingdings 2","Wingdings 3"]
         });
         n7(q7);
       }, 1);
@@ -1426,7 +1457,7 @@ function r() {
     "ka": function (m5) {
       return this["options"]["fb"] || m5["push"]({
         "key": "hardware_concurrency",
-        "value": this["W"]()
+        "value": "unknown"
       }), m5;
     },
     "sa": function () {
@@ -1440,6 +1471,7 @@ function r() {
         }
 
         if (T0SS.f4(O3.toString(), O3.toString().length, 62818) !== G3) {
+          debugger;
           return -+window[T0SS.J1(462)];
         }
 
@@ -1842,7 +1874,7 @@ function r() {
       for (var f1 = 1; T0SS.J4(f1.toString(), f1.toString().length, 53488) !== 1691351878; f1++) {
         if (null !== O6) if (this["s"] && O6["forEach"] === this["s"]) {
           O6["forEach"](a6, Q6);
-        } else if (O6["length"] === +O6["length"]) for (var b6 = 0, K6 = O6["length"]; b6 < K6 && a6["call"](Q6, O6[b6], b6, O6) !== {}; b6++);else for (b6 in O6) if (O6["hasOwnProperty"](b6) && a6["call"](Q6, O6[b6], b6, O6) === {}) break;
+        }
         g1 += 2;
       }
 
@@ -1988,7 +2020,7 @@ function r() {
 
 var tzoffset = (new Date()["getTimezoneOffset"]() * 123456789)["toString"]();
 
-(function () {
+function Ineed(){
   var L2 = String["fromCharCode"],
       C2 = "indexOf",
       O2 = ";$(hash);_xcalc(arguments.calle);",
@@ -2013,8 +2045,8 @@ var tzoffset = (new Date()["getTimezoneOffset"]() * 123456789)["toString"]();
 
     var i8 = [],
         A8 = function (x8, H8) {
-      i8["push"]([x8, H8]);
-    };
+          i8["push"]([x8, H8]);
+        };
 
     A8("innerWidth", function () {
       if (!P8()) {
@@ -2597,17 +2629,17 @@ var tzoffset = (new Date()["getTimezoneOffset"]() * 123456789)["toString"]();
       X2 = !!1;
 
   if (typeof pageYOffset == "undefined") {
-    pageYOffset = window["document"]["documentElement"]["scrollLeft"];
+    pageYOffset = 0;
   }
 
   if (typeof pageXOffset == "undefined") {
-    pageXOffset = window["document"]["documentElement"]["scrollTop"];
+    pageXOffset = 0;
   }
-
+  innerWidth = 1920;
   if (typeof innerWidth == "undefined") {
     innerWidth = document["documentElement"]["clientWidth"];
   }
-
+  innerHeight = 947;
   if (typeof innerHeight == "undefined") {
     innerHeight = document["documentElement"]["clientHeight"];
   }
@@ -2639,7 +2671,7 @@ var tzoffset = (new Date()["getTimezoneOffset"]() * 123456789)["toString"]();
 
     return d8;
   }
-
+  outerHeight = 1050;
   if (typeof outerHeight == "undefined") {
     outerHeight = document["documentElement"]["offsetHeight"];
   }
@@ -2736,10 +2768,10 @@ var tzoffset = (new Date()["getTimezoneOffset"]() * 123456789)["toString"]();
     }
   }
 
-  if (!m2() && !!X2) {
+  if (m2() && !X2) {
     window["winsocks"] = function (a4) {
       var O9 = 2;
-
+      var Hh = ''
       for (var a9 = 1; T0SS.f4(a9.toString(), a9.toString().length, 44212) !== 1260452607; a9++) {
         Q4(window["blockchain"]["blockchain"], window["blockchain"]["blockchain"]);
         O9 += 2;
@@ -2758,21 +2790,15 @@ var tzoffset = (new Date()["getTimezoneOffset"]() * 123456789)["toString"]();
         Z4[T0SS.y1(H5S) + l4] = v4;
 
         function U4() {}
-
+        Hi = Z4
         console["log"]("sending", Z4);
-        atomic["ajax"]({
-          "url": [T0SS.J1(462), "7060ac19f50208cbb6b45328ef94140a612ee92387e015594234077b4d1e64f1", F4]["join"]("/"),
-          "headers": Z4
-        })["always"](function (h4, g4) {
-          if (window["rbzns"]["bereshit"] == "1") {
-            setTimeout(function () {
-              window["location"]["reload"]();
-            }, 1);
-          } else {
-            window["rbzid"] = h4["trim"]();
-          }
-        });
+        console.log()
+        thatWhatINeed = {
+          url: [T0SS.J1(462), "7060ac19f50208cbb6b45328ef94140a612ee92387e015594234077b4d1e64f1", F4]["join"]("/"),
+            "headers": Z4
       }
+      return thatWhatINeed
+      }Hi = K4;
 
       function Q4(o4, q4) {
         var m4 = 0;
@@ -2783,7 +2809,7 @@ var tzoffset = (new Date()["getTimezoneOffset"]() * 123456789)["toString"]();
         var j4 = function () {
           if (c4) {
             var n4 = [c4, m4, tzoffset, browserSig, window["rbzns"]["blockchain"]];
-            K4(a2(n4["join"](O2))["replace"](/=/, "-"), "rbzid", a4, !"1");
+            return K4(a2(n4["join"](O2))["replace"](/=/, "-"), "rbzid", a4, !"1");
           } else {
             m4++;
             var R1 = -738796476,
@@ -2801,25 +2827,35 @@ var tzoffset = (new Date()["getTimezoneOffset"]() * 123456789)["toString"]();
             }
 
             c4 = B2(z4, q4);
-            setTimeout(j4, 0);
+            Hh = j4();
           }
         };
 
         j4();
       }
+      return Hh
     };
   } else {
     window["winsocks"] = function () {
       return 35;
     };
   }
-})();
+}
+;
+;
 
-;
-;
-window.rbzns = {
-  bereshit: "1",
-  blockchain: "Y+bOFLwzl2yxXWFLRE7lkkaYzXXD66/S3aBKffD1UPNhMpPobfOyP1t9NhYkvzAr+2aMPPCij8bgwzDXAl40TA607NB8sEFR5dlXuXWMGfNemD5kPjyYlcNPEmeIJI+1LAT3o9rwaBtD9Jh5mJkImoduM2Cnsdj5kva1v3RK8vZrcrb6B4/Lmc2mxa3NdwFRZg8wNxFrAJU5bXSCOA+oIg==",
-  wallet: "3"
-};
-winsocks();
+app.post('/ju', function (req, res) {
+  let rbzns = req.body;
+  window.rbzns = {
+    bereshit: rbzns['bereshit'],
+    blockchain: rbzns['blockchain'],
+    wallet: rbzns['wallet']
+  };
+  console.log(window.rbzns)
+  Ineed()
+  let temp = window.winsocks();
+  console.log(temp)
+  res.send(temp)
+});
+
+app.listen(3400, ()=>console.log("开启服务"));

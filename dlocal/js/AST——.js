@@ -491,8 +491,23 @@ function replaceT0SSValue(path) {
     // 执行相应函数
     let value = T0SS[callFuncName](arguments[0].value);
     if (!value) return;
-    console.log(value)
     path.replaceWith(types.StringLiteral(value));
+}
+
+// 还原控制流平坦化
+function reductionWhile(path) {
+    let node = path.node;
+    let switchBody = node.body.body[0];
+    let allPreNode = path.getAllPrevSiblings();
+    if (allPreNode.length !== 1) return;
+    if (!types.isSwitchStatement(switchBody)) return;
+    let {discriminant, cases} = switchBody;
+    // 用于储存while的case代码，用于后续替换while
+    let newCases = [];
+    for (let i = 0;i < cases.length; i++){
+
+    }
+
 }
 
 function parameter2Number(path) {
@@ -512,6 +527,25 @@ function parameter2Number(path) {
     }
 }
 
+function replaceArrayValue(path) {
+    let node = path.node;
+    let parentNode = path.parentPath;
+    if (!types.isMemberExpression(parentNode)) return;
+    let nodeProperty = node.property;
+    if (!nodeProperty || !types.isNumericLiteral(nodeProperty)) return;
+    if (!node.object || !types.isCallExpression(node.object)) return;
+    let nodeObjCallee = node.object.callee;
+    if (!nodeObjCallee || !types.isMemberExpression(nodeObjCallee)) return;
+    let funName = nodeObjCallee.property.name;
+    if (!types.isFunctionExpression(T0SS[funName])) return;
+    let func = T0SS[funName]();
+    let realIndex = parentNode.node.property;
+    if (!types.isNumericLiteral(realIndex)) return;
+    let realValue = func[nodeProperty.value][realIndex.value];
+    console.log(realValue)
+    path.stop()
+}
+
 const visitor = {
     StringLiteral: {
         enter: [unicode2ABC]
@@ -524,6 +558,12 @@ const visitor = {
     },
     CallExpression: {
         enter: [replaceT0SSValue]
+    },
+    WhileStatement: {
+        enter: [reductionWhile]
+    },
+    MemberExpression: {
+        enter: [replaceArrayValue]
     }
 }
 let ast = parser.parse(jscode);

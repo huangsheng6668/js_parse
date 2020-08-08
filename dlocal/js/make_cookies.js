@@ -93,12 +93,12 @@ window.navigator = navigator;
 
 location = new Object();
 location.port = "";
-location.protocol = "http:";
-location.host = "www.vipkid.com.cn";
-location.hostname = "www.vipkid.com.cn";
-location.href = "https://www.vipkid.com.cn/entry/terminal/wwwlogin?device=pc&firstScreen=login&appId=10001&activityCode=";
-location.origin = "https://www.vipkid.com.cn";
-location.pathname = "/entry/terminal/wwwlogin";
+location.protocol = "https:";
+location.host = "dlocal.com";
+location.hostname = "dlocal.com";
+location.href = "https://dlocal.com/press-releases/";
+location.origin = "https://dlocal.com";
+location.pathname = "/press-releases/";
 
 window.location = location;
 
@@ -135,6 +135,7 @@ window.top = window;
 
 window.self = window;
 window.window = window;
+
 
 
 T0SS.t1 = function () {
