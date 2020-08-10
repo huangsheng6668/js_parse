@@ -570,5 +570,5 @@ let ast = parser.parse(jscode);
 traverse(ast, visitor);
 let {code} = generator(ast);
 
-fs.writeFile('result.js', code, (err) => {
+fs.writeFile('dLocal_list_rbzns.js', code, (err) => {
 });
