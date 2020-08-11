@@ -570,5 +570,5 @@ let ast = parser.parse(jscode);
 traverse(ast, visitor);
 let {code} = generator(ast);
 
-fs.writeFile('result2.js', code, (err) => {
+fs.writeFile('result3.js', code, (err) => {
 });

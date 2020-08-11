@@ -1,12 +1,7 @@
-const express = require('express');
-var bodyParser = require('body-parser');
-const app = express();
-app.use(bodyParser());
-
 function randomString(len) {
   len = len || 32;
-
   /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+
   var maxPos = "ABCDEFGHJKMNPQRSTWXYZabcdefhijkmnprstwxyz2345678".length;
   var pwd = "";
 
@@ -28,7 +23,7 @@ window.encodeURIComponent = encodeURIComponent;
 window.escape = escape;
 window.unescape = unescape;
 window.eval = eval;
-window.setTimeout = setTimeout
+window.setTimeout = setTimeout;
 window.Date = Date;
 window.chrome = {};
 document = new Object();
@@ -38,6 +33,7 @@ document.documentElement.clientWidth = 1903;
 document.documentElement.scrollLeft = 0;
 document.documentElement.scrollTop = 0;
 document.documentElement.offsetWidth = 1903;
+
 document.createElement = function (name) {
   return "<" + name + ">" + "</" + name + ">";
 };
@@ -45,7 +41,8 @@ document.createElement = function (name) {
 document.createElement.toString = function () {
   return "function createElement() { [native code] }";
 };
-document["offsetWidth"] = 1903
+
+document["offsetWidth"] = 1903;
 document["offsetWidth"]["offsetWidth"] = 1903;
 window.document = document;
 var navigator = new Object();
@@ -73,9 +70,9 @@ navigator.userAgent = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (
 navigator.vendor = "Google Inc.";
 navigator.vendorSub = "";
 var tar1 = "application/" + randomString(parseInt(Math.random() * 5));
-var type1_name = tar1.split('/')[1]
+var type1_name = tar1.split("/")[1];
 var tar2 = "application/" + randomString(parseInt(Math.random() * 5));
-var type2_name = tar2.split('/')[1]
+var type2_name = tar2.split("/")[1];
 plugins = [{
   "description": "APlayer III ActiveX hosting plugin for Firefox",
   "filename": "npaplayer.dll",
@@ -100,24 +97,26 @@ any_plugins = true;
 if (any_plugins) {
   for (var i = 0; i < 10; i++) {
     let tar = "application/" + randomString(parseInt(Math.random() * 5));
-    let type_name = tar.split('/')[1]
+    let type_name = tar.split("/")[1];
     var p = {
       "description": randomString(parseInt(Math.random() * 20)),
       "filename": randomString(parseInt(Math.random() * 20)) + ".dll",
       "length": 1,
       "name": randomString(parseInt(Math.random() * 10)),
-      tar : {
-        'suffixes': type_name,
-        'type': tar
+      tar: {
+        "suffixes": type_name,
+        "type": tar
       }
     };
     plugins.push(p);
   }
 }
-for (let i = 0;i < plugins.length; i++){
-  plugins[i]['suffixes'] = plugins[i].tar.suffixes;
-  plugins[i]['type'] = plugins[i]['tar']['type'];
+
+for (let i = 0; i < plugins.length; i++) {
+  plugins[i]["suffixes"] = plugins[i].tar.suffixes;
+  plugins[i]["type"] = plugins[i]["tar"]["type"];
 }
+
 navigator.plugins = plugins;
 window.navigator = navigator;
 location = new Object();
@@ -127,7 +126,7 @@ location.host = "dlocal.com";
 location.hostname = "dlocal.com";
 location.href = "https://dlocal.com/press-release/dlocal-launches-marketplace-payments-for-emerging-markets-enabling-growth-of-global-ecommerce/";
 location.origin = "https://dlocal.com";
-location.pathname = "/press-releases/";
+location.pathname = "/press-release/dlocal-launches-marketplace-payments-for-emerging-markets-enabling-growth-of-global-ecommerce/";
 window.location = location;
 history = new Object();
 history.length = 5;
@@ -158,10 +157,6 @@ window.parent = window;
 window.top = window;
 window.self = window;
 window.window = window;
-
-function use_temp(k5){
-  return [k5["type"], k5["suffixes"]]["join"]("~");
-}
 
 T0SS.t1 = function () {
   var p = 2;
@@ -1349,73 +1344,66 @@ function r() {
             v7 = "Abadi MT Condensed Light;Academy Engraved LET;ADOBE CASLON PRO;Adobe Garamond;ADOBE GARAMOND PRO;Agency FB;Aharoni;Albertus Extra Bold;Albertus Medium;Algerian;Amazone BT;American Typewriter;American Typewriter Condensed;AmerType Md BT;Andalus;Angsana New;AngsanaUPC;Antique Olive;Aparajita;Apple Chancery;Apple Color Emoji;Apple SD Gothic Neo;Arabic Typesetting;ARCHER;ARNO PRO;Arrus BT;Aurora Cn BT;AvantGarde Bk BT;AvantGarde Md BT;AVENIR;Ayuthaya;Bandy;Bangla Sangam MN;Bank Gothic;BankGothic Md BT;Baskerville;Baskerville Old Face;Batang;BatangChe;Bauer Bodoni;Bauhaus 93;Bazooka;Bell MT;Bembo;Benguiat Bk BT;Berlin Sans FB;Berlin Sans FB Demi;Bernard MT Condensed;BernhardFashion BT;BernhardMod BT;Big Caslon;BinnerD;Blackadder ITC;BlairMdITC TT;Bodoni 72;Bodoni 72 Oldstyle;Bodoni 72 Smallcaps;Bodoni MT;Bodoni MT Black;Bodoni MT Condensed;Bodoni MT Poster Compressed;Bookshelf Symbol 7;Boulder;Bradley Hand;Bradley Hand ITC;Bremen Bd BT;Britannic Bold;Broadway;Browallia New;BrowalliaUPC;Brush Script MT;Californian FB;Calisto MT;Calligrapher;Candara;CaslonOpnface BT;Castellar;Centaur;Cezanne;CG Omega;CG Times;Chalkboard;Chalkboard SE;Chalkduster;Charlesworth;Charter Bd BT;Charter BT;Chaucer;ChelthmITC Bk BT;Chiller;Clarendon;Clarendon Condensed;CloisterBlack BT;Cochin;Colonna MT;Constantia;Cooper Black;Copperplate;Copperplate Gothic;Copperplate Gothic Bold;Copperplate Gothic Light;CopperplGoth Bd BT;Corbel;Cordia New;CordiaUPC;Cornerstone;Coronet;Cuckoo;Curlz MT;DaunPenh;Dauphin;David;DB LCD Temp;DELICIOUS;Denmark;DFKai-SB;Didot;DilleniaUPC;DIN;DokChampa;Dotum;DotumChe;Ebrima;Edwardian Script ITC;Elephant;English 111 Vivace BT;Engravers MT;EngraversGothic BT;Eras Bold ITC;Eras Demi ITC;Eras Light ITC;Eras Medium ITC;EucrosiaUPC;Euphemia;Euphemia UCAS;EUROSTILE;Exotc350 Bd BT;FangSong;Felix Titling;Fixedsys;FONTIN;Footlight MT Light;Forte;FrankRuehl;Fransiscan;Freefrm721 Blk BT;FreesiaUPC;Freestyle Script;French Script MT;FrnkGothITC Bk BT;Fruitger;FRUTIGER;Futura;Futura Bk BT;Futura Lt BT;Futura Md BT;Futura ZBlk BT;FuturaBlack BT;Gabriola;Galliard BT;Gautami;Geeza Pro;Geometr231 BT;Geometr231 Hv BT;Geometr231 Lt BT;GeoSlab 703 Lt BT;GeoSlab 703 XBd BT;Gigi;Gill Sans;Gill Sans MT;Gill Sans MT Condensed;Gill Sans MT Ext Condensed Bold;Gill Sans Ultra Bold;Gill Sans Ultra Bold Condensed;Gisha;Gloucester MT Extra Condensed;GOTHAM;GOTHAM BOLD;Goudy Old Style;Goudy Stout;GoudyHandtooled BT;GoudyOLSt BT;Gujarati Sangam MN;Gulim;GulimChe;Gungsuh;GungsuhChe;Gurmukhi MN;Haettenschweiler;Harlow Solid Italic;Harrington;Heather;Heiti SC;Heiti TC;HELV;Herald;High Tower Text;Hiragino Kaku Gothic ProN;Hiragino Mincho ProN;Hoefler Text;Humanst 521 Cn BT;Humanst521 BT;Humanst521 Lt BT;Imprint MT Shadow;Incised901 Bd BT;Incised901 BT;Incised901 Lt BT;INCONSOLATA;Informal Roman;Informal011 BT;INTERSTATE;IrisUPC;Iskoola Pota;JasmineUPC;Jazz LET;Jenson;Jester;Jokerman;Juice ITC;Kabel Bk BT;Kabel Ult BT;Kailasa;KaiTi;Kalinga;Kannada Sangam MN;Kartika;Kaufmann Bd BT;Kaufmann BT;Khmer UI;KodchiangUPC;Kokila;Korinna BT;Kristen ITC;Krungthep;Kunstler Script;Lao UI;Latha;Leelawadee;Letter Gothic;Levenim MT;LilyUPC;Lithograph;Lithograph Light;Long Island;Lydian BT;Magneto;Maiandra GD;Malayalam Sangam MN;Malgun Gothic;Mangal;Marigold;Marion;Marker Felt;Market;Marlett;Matisse ITC;Matura MT Script Capitals;Meiryo;Meiryo UI;Microsoft Himalaya;Microsoft JhengHei;Microsoft New Tai Lue;Microsoft PhagsPa;Microsoft Tai Le;Microsoft Uighur;Microsoft YaHei;Microsoft Yi Baiti;MingLiU;MingLiU_HKSCS;MingLiU_HKSCS-ExtB;MingLiU-ExtB;Minion;Minion Pro;Miriam;Miriam Fixed;Mistral;Modern;Modern No. 20;Mona Lisa Solid ITC TT;Mongolian Baiti;MONO;MoolBoran;Mrs Eaves;MS LineDraw;MS Mincho;MS PMincho;MS Reference Specialty;MS UI Gothic;MT Extra;MUSEO;MV Boli;Nadeem;Narkisim;NEVIS;News Gothic;News GothicMT;NewsGoth BT;Niagara Engraved;Niagara Solid;Noteworthy;NSimSun;Nyala;OCR A Extended;Old Century;Old English Text MT;Onyx;Onyx BT;OPTIMA;Oriya Sangam MN;OSAKA;OzHandicraft BT;Palace Script MT;Papyrus;Parchment;Party LET;Pegasus;Perpetua;Perpetua Titling MT;PetitaBold;Pickwick;Plantagenet Cherokee;Playbill;PMingLiU;PMingLiU-ExtB;Poor Richard;Poster;PosterBodoni BT;PRINCETOWN LET;Pristina;PTBarnum BT;Pythagoras;Raavi;Rage Italic;Ravie;Ribbon131 Bd BT;Rockwell;Rockwell Condensed;Rockwell Extra Bold;Rod;Roman;Sakkal Majalla;Santa Fe LET;Savoye LET;Sceptre;Script;Script MT Bold;SCRIPTINA;Serifa;Serifa BT;Serifa Th BT;ShelleyVolante BT;Sherwood;Shonar Bangla;Showcard Gothic;Shruti;Signboard;SILKSCREEN;SimHei;Simplified Arabic;Simplified Arabic Fixed;SimSun;SimSun-ExtB;Sinhala Sangam MN;Sketch Rockwell;Skia;Small Fonts;Snap ITC;Snell Roundhand;Socket;Souvenir Lt BT;Staccato222 BT;Steamer;Stencil;Storybook;Styllo;Subway;Swis721 BlkEx BT;Swiss911 XCm BT;Sylfaen;Synchro LET;System;Tamil Sangam MN;Technical;Teletype;Telugu Sangam MN;Tempus Sans ITC;Terminal;Thonburi;Traditional Arabic;Trajan;TRAJAN PRO;Tristan;Tubular;Tunga;Tw Cen MT;Tw Cen MT Condensed;Tw Cen MT Condensed Extra Bold;TypoUpright BT;Unicorn;Univers;Univers CE 55 Medium;Univers Condensed;Utsaah;Vagabond;Vani;Vijaya;Viner Hand ITC;VisualUI;Vivaldi;Vladimir Script;Vrinda;Westminster;WHITNEY;Wide Latin;ZapfEllipt BT;ZapfHumnst BT;ZapfHumnst Dm BT;Zapfino;Zurich BlkEx BT;Zurich Ex BT;ZWAdobeF"["split"](";");
         o7["options"]["xb"] && (l7 = l7["concat"](v7));
         l7 = l7["concat"](o7["options"]["Pa"]);
-        // v7 = document["getElementsByTagName"]("body")[0];
-        //
-        // var g7 = document["createElement"]("div"),
-        //     h7 = document["createElement"]("div"),
-        //     s7 = {},
-        //     f7 = {},
-        //     U7 = function () {
-        //   for (var N7 = [], d7 = 0, A7 = Z7["length"]; d7 < A7; d7++) {
-        //     var r7 = t7();
-        //     r7["style"]["fontFamily"] = Z7[d7];
-        //     g7["appendChild"](r7);
-        //     N7["push"](r7);
-        //   }
-        //
-        //   return N7;
-        // }();
-        //
-        // v7["appendChild"](g7);
-        //
-        // for (var F7 = 0, M7 = Z7["length"]; F7 < M7; F7++) s7[Z7[F7]] = U7[F7]["offsetWidth"], f7[Z7[F7]] = U7[F7]["offsetHeight"];
+        v7 = document["getElementsByTagName"]("body")[0];
 
-        // U7 = function () {
-        //   for (var u7 = {}, w7 = 0, H7 = l7["length"]; w7 < H7; w7++) {
-        //     for (var P7 = [], I7 = 0, T5 = Z7["length"]; I7 < T5; I7++) {
-        //       var i7 = l7[w7],
-        //
-        //           E5 = Z7[I7],
-        //           x7 = t7();
-        //       T0SS.Y6S(T0SS.L6S()[11][57]);
-        //       var B0S = T0SS.C6S(3366, 3564);
-        //       T0SS.W6S(T0SS.L6S()[30][24][4][30]);
-        //       var X0S = T0SS.C6S(38, 2);
-        //       x7["style"]["fontFamily"] = T0SS.y1(B0S) + i7 + T0SS.J1(X0S) + E5;
-        //       i7 = x7;
-        //       h7["appendChild"](i7);
-        //       P7["push"](i7);
-        //     }
-        //
-        //     u7[l7[w7]] = P7;
-        //   }
-        //
-        //   return u7;
-        // }();
+        var g7 = document["createElement"]("div"),
+            h7 = document["createElement"]("div"),
+            s7 = {},
+            f7 = {},
+            U7 = function () {
+          for (var N7 = [], d7 = 0, A7 = Z7["length"]; d7 < A7; d7++) {
+            var r7 = t7();
+            r7["style"]["fontFamily"] = Z7[d7];
+            g7["appendChild"](r7);
+            N7["push"](r7);
+          }
 
-        // v7["appendChild"](h7);
+          return N7;
+        }();
+
+        v7["appendChild"](g7);
+
+        for (var F7 = 0, M7 = Z7["length"]; F7 < M7; F7++) s7[Z7[F7]] = U7[F7]["offsetWidth"], f7[Z7[F7]] = U7[F7]["offsetHeight"];
+
+        U7 = function () {
+          for (var u7 = {}, w7 = 0, H7 = l7["length"]; w7 < H7; w7++) {
+            for (var P7 = [], I7 = 0, T5 = Z7["length"]; I7 < T5; I7++) {
+              var i7 = l7[w7],
+                  E5 = Z7[I7],
+                  x7 = t7();
+              T0SS.Y6S(T0SS.L6S()[11][57]);
+              var B0S = T0SS.C6S(3366, 3564);
+              T0SS.W6S(T0SS.L6S()[30][24][4][30]);
+              var X0S = T0SS.C6S(38, 2);
+              x7["style"]["fontFamily"] = T0SS.y1(B0S) + i7 + T0SS.J1(X0S) + E5;
+              i7 = x7;
+              h7["appendChild"](i7);
+              P7["push"](i7);
+            }
+
+            u7[l7[w7]] = P7;
+          }
+
+          return u7;
+        }();
+
+        v7["appendChild"](h7);
         F7 = [];
         M7 = 0;
 
-        // for (var J7 = l7["length"]; M7 < J7; M7++) (function (W5) {
-        //   for (var Y5 = !1, C5 = 0; C5 < Z7["length"] && !(Y5 = W5[C5]["offsetWidth"] !== s7[Z7[C5]] || W5[C5]["offsetHeight"] !== f7[Z7[C5]]); C5++);
+        for (var J7 = l7["length"]; M7 < J7; M7++) (function (W5) {
+          for (var Y5 = !1, C5 = 0; C5 < Z7["length"] && !(Y5 = W5[C5]["offsetWidth"] !== s7[Z7[C5]] || W5[C5]["offsetHeight"] !== f7[Z7[C5]]); C5++);
 
-        //   return Y5;
-        // })(U7[l7[M7]]) && F7["push"](l7[M7]);
-        //
+          return Y5;
+        })(U7[l7[M7]]) && F7["push"](l7[M7]);
+
         function t7() {
           var y7 = document["createElement"]("span");
-          debugger;
-          y7["style"]["position"] = "";
-          y7["style"]["left"] = "";
-          y7["style"]["fontSize"] = "";
-          y7["style"]["lineHeight"] = "";
-          y7["innerHTML"] = "";
           return y7["style"]["position"] = "absolute", y7["style"]["left"] = "-9999px", y7["style"]["fontSize"] = "72px", y7["style"]["lineHeight"] = "normal", y7["innerHTML"] = "mmmmmmmmmmlli", y7;
         }
-        //
-        // v7["removeChild"](h7);
-        // v7["removeChild"](g7);
+
+        v7["removeChild"](h7);
+        v7["removeChild"](g7);
         q7["push"]({
           "key": "js_fonts",
           "value": F7
@@ -1433,13 +1421,14 @@ function r() {
       })), e5;
     },
     "m": function () {
-      var S5 = [];
       for (var L5 = [], p5 = 0, R5 = navigator["plugins"]["length"]; p5 < R5; p5++) L5["push"](navigator["plugins"][p5]);
 
       return this["Ja"]() && (L5 = L5["sort"](function (D5, B5) {
         return D5["name"] > B5["name"] ? 1 : D5["name"] < B5["name"] ? -1 : 0;
       })), this["map"](L5, function (X5) {
-        S5.push(use_temp(X5));
+        var S5 = this["map"](X5, function (k5) {
+          return [k5["type"], k5["suffixes"]]["join"]("~");
+        })["join"](",");
         return [X5["name"], X5["description"], S5]["join"]("::");
       }, this);
     },
@@ -2032,7 +2021,7 @@ function r() {
 
 var tzoffset = (new Date()["getTimezoneOffset"]() * 123456789)["toString"]();
 
-function encrypt() {
+(function () {
   var L2 = String["fromCharCode"],
       C2 = "indexOf",
       O2 = ";$(hash);_xcalc(arguments.calle);",
@@ -2773,6 +2762,13 @@ function encrypt() {
   var x5S = T0SS.E6S(189, 5, 8, 9, 17);
   Y2["push"](W2[C2](typeof screenX) > x5S);
 
+  for (idx in Y2) {
+    if (!Y2[idx]) {
+      X2 = !{};
+      break;
+    }
+  }
+
   if (!m2() && !!X2) {
     window["winsocks"] = function (a4) {
       var O9 = 2;
@@ -2797,11 +2793,18 @@ function encrypt() {
         function U4() {}
 
         console["log"]("sending", Z4);
-        let back = {
-          url: [T0SS.J1(462), "7060ac19f50208cbb6b45328ef94140a612ee92387e015594234077b4d1e64f1", F4]["join"]("/"),
-          headers: Z4
-        }
-        window['contentIneed'] = back;
+        atomic["ajax"]({
+          "url": [T0SS.J1(462), "7060ac19f50208cbb6b45328ef94140a612ee92387e015594234077b4d1e64f1", F4]["join"]("/"),
+          "headers": Z4
+        })["always"](function (h4, g4) {
+          if (window["rbzns"]["bereshit"] == "1") {
+            setTimeout(function () {
+              window["location"]["reload"]();
+            }, 1);
+          } else {
+            window["rbzid"] = h4["trim"]();
+          }
+        });
       }
 
       function Q4(o4, q4) {
@@ -2831,7 +2834,7 @@ function encrypt() {
             }
 
             c4 = B2(z4, q4);
-            j4();
+            setTimeout(j4, 0);
           }
         };
 
@@ -2843,30 +2846,13 @@ function encrypt() {
       return 35;
     };
   }
+})();
+
+;
+;
+window.rbzns = {
+  bereshit: "1",
+  blockchain: "l1aCBR/OCYyZG8BB3s6Xu2J3hxcppFEcLH2u2BZuyxfMp0UzrB7PMY+DYmHY4yH09MvYreJueXXWsACwRIBp2MakmBBtE0cPvMwujudgADPf200SJFlxMaR1Zua8i4wiLEK3wyRwgiWi2qdrhh/AwNJH4PBcLBRf3HGbZLOrrHMc/JG7WJI/QMKgh9NH7BU8GA+RSmOCZeJ8c+VkWnN59Ck0kK9csJjkbMt+0iNA8dk=",
+  wallet: "3"
 };
-
-// aa()
-
-// window.rbzns = {
-//   bereshit: "1",
-//   blockchain: "l1aCBR/OCYyZG8BB3s6Xu2J3hxcppFEcLH2u2BZuyxfMp0UzrB7PMY+DYmHY4yH09MvYreJueXXWsACwRIBp2MakmBBtE0cPvMwujudgADPf200SJFlxMaR1Zua8i4wiLEK3wyRwgiWi2qdrhh/AwNJH4PBcLBRf3HGbZLOrrHMc/JG7WJI/QMKgh9NH7BU8GA+RSmOCZeJ8c+VkWnN59Ck0kK9csJjkbMt+0iNA8dk=",
-//   wallet: "3"
-// };
-// window.winsocks();
-
-app.post('/rbzid', function (req, res) {
-  let rbzns = req.body;
-  console.log('come in')
-  window.rbzns = {
-    bereshit: rbzns['bereshit'],
-    blockchain: rbzns['blockchain'],
-    wallet: rbzns['wallet']
-  };
-  window.blockchain = window.rbzns.blockchain;
-  encrypt()
-  window.winsocks();
-  console.log(window['rbzns'])
-  res.send(window["contentIneed"])
-});
-
-app.listen(3401, ()=>console.log("开启服务"));
+winsocks();

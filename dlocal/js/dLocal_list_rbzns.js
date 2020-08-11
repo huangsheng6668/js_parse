@@ -1485,10 +1485,10 @@ function r() {
         //   return Y5;
         // })(U7[l7[M7]]) && F7["push"](l7[M7]);
         F7 = ["Arial","Arial Black","Arial Narrow","Book Antiqua","Bookman Old Style","Calibri","Cambria","Cambria Math","Century","Century Gothic","Century Schoolbook","Comic Sans MS","Consolas","Courier","Courier New","Garamond","Georgia","Helvetica","Impact","Lucida Bright","Lucida Calligraphy","Lucida Console","Lucida Fax","Lucida Handwriting","Lucida Sans","Lucida Sans Typewriter","Lucida Sans Unicode","Microsoft Sans Serif","Monotype Corsiva","MS Gothic","MS PGothic","MS Reference Sans Serif","MS Sans Serif","MS Serif","Palatino Linotype","Segoe Print","Segoe Script","Segoe UI","Segoe UI Light","Segoe UI Semibold","Segoe UI Symbol","Tahoma","Times","Times New Roman","Trebuchet MS","Verdana","Wingdings","Wingdings 2","Wingdings 3"];
-        function t7() {
-          var y7 = document["createElement"]("span");
-          return y7["style"]["position"] = "absolute", y7["style"]["left"] = "-9999px", y7["style"]["fontSize"] = "72px", y7["style"]["lineHeight"] = "normal", y7["innerHTML"] = "mmmmmmmmmmlli", y7;
-        }
+        // function t7() {
+        //   var y7 = document["createElement"]("span");
+        //   return y7["style"]["position"] = "absolute", y7["style"]["left"] = "-9999px", y7["style"]["fontSize"] = "72px", y7["style"]["lineHeight"] = "normal", y7["innerHTML"] = "mmmmmmmmmmlli", y7;
+        // }
 
         // v7["removeChild"](h7);
         // v7["removeChild"](g7);
@@ -2912,12 +2912,10 @@ function aa() {
             }
 
             c4 = B2(z4, q4);
-            // setTimeout(j4, 0)
             j4()
           }
         };
         j4();
-
       }
     };
   } else {
