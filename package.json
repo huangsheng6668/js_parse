@@ -12,6 +12,13 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.10.1",
-    "babel-generator": "^6.26.1"
+    "babel-generator": "^6.26.1",
+    "core-util-is": "^1.0.2",
+    "inherits": "^2.0.4",
+    "isarray": "^2.0.5",
+    "multer": "^1.4.2",
+    "process-nextick-args": "^2.0.1",
+    "safe-buffer": "^5.2.1",
+    "util-deprecate": "^1.0.2"
   }
 }

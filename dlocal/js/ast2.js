@@ -459,25 +459,6 @@ function renameH(path) {
     }
 }
 
-function PathToLiteral(path, value) {
-    switch (typeof value) {
-        case 'boolean':
-            path.replaceWith(types.booleanLiteral(value));
-            break;
-        case 'string':
-            path.replaceWith(types.stringLiteral(value));
-            break;
-        case 'number':
-            path.replaceWith(types.numericLiteral(value));
-            break;
-        default:
-            console.log("出现其他类型" + value + "类型:" + typeof value);
-            console.log(value);
-            break
-    }
-    path.stop()
-}
-
 // 执行并替换T0SS.xx方法为实际值
 function replaceT0SSValue(path) {
     let node = path.node;

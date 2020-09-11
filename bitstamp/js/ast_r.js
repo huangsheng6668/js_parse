@@ -1,19 +1,30 @@
 /*****************************************************
  Module name:decode_obfuscator.js
  Author:陆小凤
- Date:2020.8.23
- version:V1.0
+ Date:2020.8.29
+ Version:V2.0
+
+ 混淆工具地址:https://obfuscator.io/
+
+ 脚本仅用于被obfuscator混淆了的代码，如果js魔改过，
+
+ 则可能会导致本脚本失效。
 
  声明:脚本仅用于学习研究，禁止非法使用，否则后果自负！
- 欢迎加入本人星球，解锁更多AST相关姿势！^_^
- 星球地址:https://t.zsxq.com/FMRf2ZV
 
- 有志者,事竟成,破釜沉舟,百二秦关终属楚
- 苦心人,天不负,卧薪尝胆,三千越甲可吞吴
+ 欢迎加入本人星球，解锁更多AST相关姿势！^_^
+
+ 星球地址:
+
+ https://t.zsxq.com/FMRf2ZV
+
+ 书山有路勤为径
+ 学海无涯苦作舟
 
  *****************************************************/
 
 //babel库及文件模块导入
+
 const fs = require('fs');
 
 const parser    = require("@babel/parser");
@@ -23,31 +34,37 @@ const generator = require("@babel/generator").default;
 
 
 /**********************************************************
+
  命令行输入，获取混淆前的js源代码及解混淆后生成的新的js代码。
  eg: node decode_obfuscator.js encode.js decode_result.js
  encode.js 混淆前js源代码的路径
  decode_result.js 生成新js代码的路径
  默认 混淆前js源代码的路径为 ./encode.js
  默认 生成新js代码的路径为   ./decode_result.js
+
  ***********************************************************/
 
-let encode_file = "./source.js",decode_file = "./result1.js";
-if (process.argv.length == 3)
+let encode_file = "./source.js",decode_file = "./decode_result1.js";
+
+if (process.argv.length > 2)
 {
     encode_file = process.argv[2];
 }
-else if (process.argv.length == 4)
+if (process.argv.length > 3)
 {
     decode_file = process.argv[3];
 }
-var jscode = fs.readFileSync(encode_file, {encoding: "utf-8"});
+
+let jscode = fs.readFileSync(encode_file, {encoding: "utf-8"});
 let ast = parser.parse(jscode);
 
 
 /***********************************************************
+
  NumericLiteral ---> Literal
  StringLiteral  ---> Literal
  用于处理已十六进制显示的字符串或者数值
+
  ***********************************************************/
 const delete_extra =
     {
@@ -56,13 +73,36 @@ const delete_extra =
             delete path.node.extra;
         },
     }
+
 traverse(ast, delete_extra);
 
+/********************************************************
+
+ BinaryExpression --> Literal,object对象还原预处理
+ UnaryExpression  --> Literal,object对象还原预处理
+
+ ********************************************************/
+const combin_BinaryExpression =
+    {
+        "BinaryExpression|UnaryExpression|ConditionalExpression"(path)
+        {
+            if (path.type == "UnaryExpression" && path.node.operator == "-")
+            {
+                return;
+            }
+            const {confident,value} = path.evaluate();
+            value != "Infinity" && confident && path.replaceInline(types.valueToNode(value));
+        },
+    }
+traverse(ast, combin_BinaryExpression);
+
 /********************************************************************
+
  替换函数调用处的字符串 即 CallExpression ----> StringLiteral
  obfuscator 混淆过的js代码特征很明显 大数组 + 移位函数 + 解密函数，
  然后在其他地方多次调用该解密函数
  下面的插件将调用处的CallExpression直接计算出来，然后再替换值。
+
  *********************************************************************/
 const decode_str = {
 
@@ -85,8 +125,10 @@ const decode_str = {
         let expression = second_sibling.get('expression');
         if (!expression.isCallExpression()) return;
 
+
+
         let {callee,arguments} = expression.node;
-        if (!types.isFunctionExpression(callee) || arguments.length !== 2 ||
+        if (!types.isFunctionExpression(callee) || arguments.length < 2 ||
             !types.isIdentifier(arguments[0],{name:id.name}) ||
             !types.isNumericLiteral(arguments[1]))
         {
@@ -94,12 +136,12 @@ const decode_str = {
         }
 
         let declarations = third_sibling.node.declarations;
-        if (declarations.length != 1 ||
-            !types.isFunctionExpression(declarations[0].init))
+        if (declarations.length < 1 || !types.isFunctionExpression(declarations[0].init))
         {
             return;
         }
         //******************************************************特征判断结束
+
 
 
         let end = third_sibling.node.end; //防止遍历函数体里的调用
@@ -111,7 +153,6 @@ const decode_str = {
             let second_arg_node = callee.params[1];
             let body = callee.body.body;
             let call_fun = body[0].declarations[0].id;
-            body.pop();
             body.pop();
             body.push(types.ExpressionStatement(types.UpdateExpression("++", second_arg_node)));
             body.push(types.ExpressionStatement(types.CallExpression(call_fun, [second_arg_node])));
@@ -155,14 +196,14 @@ const decode_str = {
             try
             {
                 let value = eval(call_path.toString());
-                console.log(call_path.toString(),value);
-                value !== undefined && call_path.replaceWith(types.valueToNode(value))
+                console.log(call_path.toString(),"-->",value);
+                call_path.replaceWith(types.valueToNode(value))
             }catch(e){can_removed = false;}
         }
 
         if (can_removed)
         {
-            path.parentPath.remove();
+            path.remove();
             second_sibling.remove();
             third_sibling.remove();
         }
@@ -171,22 +212,8 @@ const decode_str = {
 traverse(ast, decode_str);
 
 
-//BinaryExpression --> Literal,object对象还原预处理
-const combin_BinaryExpression =
-    {
-        "BinaryExpression"(path)
-        {
-            const {confident,value} = path.evaluate();
-            if (value == "Infinity")
-            {
-                return;
-            }
-            confident && path.replaceInline(types.valueToNode(value));
-        },
-    }
+
 traverse(ast, combin_BinaryExpression);
-
-
 //SequenceExpression ---> ExpressionStatement,object对象还原预处理
 const decode_comma = {
     ExpressionStatement(path)
@@ -195,7 +222,7 @@ const decode_comma = {
         let prev_sibling = path.getPrevSibling();
         if (!prev_sibling.isVariableDeclaration()) return;
         let {declarations} = prev_sibling.node;
-        if (declarations.length !== 1) return;
+        if (declarations.length < 1) return;
         let {id,init} = declarations[0];
         if (!types.isObjectExpression(init)) return;
 
@@ -233,16 +260,20 @@ const decode_object = {
 
             let {operator,left,right} = expression.node;
 
-            if (operator != '=' || !types.isMemberExpression(left) || !types.isIdentifier(left.object,{name:name}))
+            if (operator != '=' || !types.isMemberExpression(left) ||
+                !types.isIdentifier(left.object,{name:name}) || !types.isStringLiteral(left.property))
             {
-
                 break;
             }
-
             properties.push(types.ObjectProperty(left.property,right));
 
             next_sibling.remove();
 
+        }
+
+        if (properties.length == 0)
+        {
+            return;
         }
 
         let scope = path.scope;
@@ -251,7 +282,7 @@ const decode_object = {
         {
             let declarations = next_sibling.node.declarations;
 
-            if (declarations.length == 1 && types.isIdentifier(declarations[0].init,{name:name}))
+            if (declarations.length > 0 && types.isIdentifier(declarations[0].init,{name:name}))
             {
                 scope.rename(declarations[0].id.name,name);
                 next_sibling.remove();
@@ -259,12 +290,18 @@ const decode_object = {
         }
 
         for (const property of properties)
-        {
+        {//预判是否为 obfuscator 混淆的object
             let key   = property.key.value;
-            if (key.length !== 3 && key.length !== 5)
+            let value = property.value;
+            if (!types.isStringLiteral(value) && !types.isFunctionExpression(value))
             {
                 return;
             }
+        }
+
+        for (const property of properties)
+        {
+            let key   = property.key.value;
             let value = property.value;
             if (types.isLiteral(value))
             {
@@ -290,24 +327,25 @@ const decode_object = {
                         if (!types.isIdentifier(callee.object,{name:name})) return;
                         if (!types.isLiteral(callee.property, {value:key})) return;
 
+                        let replace_node = null;
+
                         if (types.isCallExpression(ret_state.argument) && arguments.length > 0) {
-                            _path.replaceWith(types.CallExpression(arguments[0], arguments.slice(1)));
+                            replace_node = types.CallExpression(arguments[0], arguments.slice(1));
                         }
                         else if (types.isBinaryExpression(ret_state.argument) && arguments.length === 2)
                         {
-                            let replace_node = types.BinaryExpression(ret_state.argument.operator, arguments[0], arguments[1]);
-                            _path.replaceWith(replace_node);
+                            replace_node = types.BinaryExpression(ret_state.argument.operator, arguments[0], arguments[1]);
                         }
                         else if (types.isLogicalExpression(ret_state.argument) && arguments.length === 2)
                         {
-                            let replace_node = types.LogicalExpression(ret_state.argument.operator, arguments[0], arguments[1]);
-                            _path.replaceWith(replace_node);
+                            replace_node = types.LogicalExpression(ret_state.argument.operator, arguments[0], arguments[1]);
                         }
+                        replace_node && _path.replaceWith(replace_node);
                     }
                 })
             }
         }
-        path.remove();//慎重
+        path.remove();
     },
 }
 traverse(ast, decode_object);
@@ -320,7 +358,7 @@ const decode_while = {
     WhileStatement(path)
     {
         const {test,body} = path.node;
-        if (!types.isUnaryExpression(test) || body.body.length === 0  || !types.isSwitchStatement(body.body[0])) return;
+        if (!types.isLiteral(test,{value:true}) || body.body.length === 0  || !types.isSwitchStatement(body.body[0])) return;
         let switch_state = body.body[0];
         let {discriminant,cases} = switch_state;
         if (!types.isMemberExpression(discriminant) || !types.isUpdateExpression(discriminant.property)) return;
@@ -357,7 +395,7 @@ const decode_while = {
 traverse(ast, decode_while);
 
 /***************************************************
- 处理IfStatement，规范的IfStatement
+ 处理IfStatement，规范If表达式
  删除条件已知的语句
  ***************************************************/
 traverse(ast, combin_BinaryExpression);
@@ -389,6 +427,10 @@ const decode_if = {
         {
             alternate === null? path.remove():path.replaceInline(alternate.body);
         }
+    },
+    EmptyStatement(path)
+    {
+        path.remove();
     },
 }
 traverse(ast, decode_if);

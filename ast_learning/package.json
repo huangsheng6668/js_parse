@@ -1,0 +1,15 @@
+{
+  "name": "ast_learning",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "^7.11.1",
+    "babel-generator": "^6.26.1"
+  }
+}
